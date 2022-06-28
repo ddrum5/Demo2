@@ -1,15 +1,21 @@
-package com.example.demo2.views.adpter
+package com.example.demo2.ui.home.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.demo2.databinding.UserItemBinding
-import com.example.demo2.models.User
+import com.example.demo2.data.models.User
 
 class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     private var userList: MutableList<User>? = null
+    var onClick: UserListener? = null
+
+
+     fun setClick(onClick: UserListener) {
+        this.onClick = onClick
+    }
 
 
     fun setUserList(userList: MutableList<User>) {
@@ -25,12 +31,15 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         var userItem = userList?.get(position)
+        holder.binding.userModel = userItem
 //        holder.binding.name.text = userItem?.name ?: "";
 //        holder.binding.gender.text = userItem?.gender ?: "";
-        holder.binding.userModel = userItem
-
-        Glide.with(holder.itemView.context).load(userItem?.image).into(holder.binding.image);
-
+//        Glide.with(holder.itemView.context).load(userItem?.image).into(holder.binding.image);
+        userItem?.let { user ->
+            holder.binding.btnSave.setOnClickListener(View.OnClickListener {
+                onClick?.onClick(user)
+            })
+        }
     }
 
     override fun getItemCount(): Int {

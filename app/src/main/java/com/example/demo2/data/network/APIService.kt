@@ -1,4 +1,4 @@
-package com.example.demo2.network
+package com.example.demo2.data.network
 
 import com.example.data.models.UserPageResponse
 import retrofit2.http.GET
