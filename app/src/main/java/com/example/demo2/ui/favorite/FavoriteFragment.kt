@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.demo2.R
 import com.example.demo2.databinding.FragmentFavoriteBinding
 import com.example.demo2.ui.home.adapters.UserAdapter
-import kotlinx.coroutines.launch
 
 class FavoriteFragment : Fragment() {
 
@@ -32,11 +30,13 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        favoriteViewModel = ViewModelProvider(this).get(FavoriteViewModel::class.java)
-        context?.let { favoriteViewModel.init(it) }
-        lifecycleScope.launch {
-            favoriteViewModel.initData()
+        favoriteViewModel = FavoriteViewModel(requireContext())
+
+        lifecycleScope.launchWhenCreated {
+            favoriteViewModel.init()
         }
+
+//        favoriteViewModel = ViewModelProvider(this).get(FavoriteViewModel::class.java)
         initDataRecyclerView()
 
     }
@@ -45,15 +45,17 @@ class FavoriteFragment : Fragment() {
         userAdapter = UserAdapter()
         binding.rcvListUser.adapter = userAdapter
 
-        favoriteViewModel.getUsers().observe(viewLifecycleOwner, Observer {
+        favoriteViewModel.users.observe(viewLifecycleOwner, Observer {
             userAdapter.setUserList(it)
         })
 
+//        favoriteViewModel.getUsers().observe(viewLifecycleOwner, Observer {
+//            userAdapter.setUserList(it)
+//        })
 
 
 
     }
-
 
 
 }

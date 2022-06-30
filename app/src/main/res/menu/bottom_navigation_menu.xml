@@ -10,5 +10,10 @@
         android:icon="@android:drawable/sym_def_app_icon"
         android:enabled="true"
         android:title="Favorite"/>
+    <item
+        android:id="@+id/remoteMediatorFragment"
+        android:icon="@android:drawable/sym_def_app_icon"
+        android:enabled="true"
+        android:title="Remote Mediator"/>
 
 </menu>

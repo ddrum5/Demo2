@@ -68,7 +68,6 @@ class HomeFragment : Fragment() {
 //
 //}
 
-
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var userAdapter: UserAdapterPaging
@@ -83,7 +82,8 @@ class HomeFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        homeViewModel = HomeViewModel(requireContext())
+//        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         initRecyclerView()
         initViewModel()
     }
@@ -93,8 +93,6 @@ class HomeFragment : Fragment() {
             view?.let { item -> Snackbar.make(item, it.name.toString() , Snackbar.LENGTH_SHORT).show() }
         })
         binding.rcvListUser.adapter = userAdapter
-
-
 
 
 

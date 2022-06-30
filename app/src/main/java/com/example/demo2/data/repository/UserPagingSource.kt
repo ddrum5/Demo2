@@ -1,15 +1,15 @@
 package com.example.demo2.data.repository
 
-import android.util.Log
+
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.demo2.data.models.User
-import com.example.demo2.data.network.APIService
+import com.example.demo2.data.api.ApiService
 import kotlinx.coroutines.delay
 
 @ExperimentalPagingApi
-class UserPagingSource(private val apiService: APIService) : PagingSource<Int, User>() {
+class UserPagingSource(private val apiService: ApiService) : PagingSource<Int, User>() {
     override fun getRefreshKey(state: PagingState<Int, User>): Int? {
         return state.anchorPosition
     }

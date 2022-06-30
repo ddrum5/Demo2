@@ -1,4 +1,4 @@
-package com.example.demo2.data.network
+package com.example.demo2.data.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -21,8 +21,8 @@ class RetrofitInstance {
         }
 
 
-        fun apiService(): APIService {
-            return retrofit.create(APIService::class.java)
+        fun apiService(): ApiService {
+            return retrofit.create(ApiService::class.java)
         }
     }
 
