@@ -24,6 +24,7 @@ class MainActivity() : AppCompatActivity() {
     private fun initViewModel() {
         BaseViewModel(this.applicationContext)
 //        baseViewModel = ViewModelProvider(this).get(BaseViewModel::class.java)
+        //
     }
 
 
